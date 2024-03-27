@@ -28,7 +28,7 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-	//private boolean deleted;
+	private boolean deleted;
 	
 	@CreatedDate
 	@Column(updatable = false)

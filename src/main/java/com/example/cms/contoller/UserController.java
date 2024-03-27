@@ -35,10 +35,10 @@ public class UserController {
 		return service.registerUser(user);
 	}
 	
-//	@DeleteMapping("users/{userId}")
-//	public ResponseEntity<ResponseStructure<UserResponse>> deleteUser(@PathVariable int userId){
-//		return service.deleteUser(userId);
-//	}
+	@DeleteMapping("users/{userId}")
+	public ResponseEntity<ResponseStructure<UserResponse>> deleteUser(@PathVariable int userId){
+		return service.deleteUser(userId);
+	}
 //	
 //	@GetMapping("users/{userId}")
 //	public ResponseEntity<ResponseStructure<UserResponse>> findUniqueUser(@PathVariable int userId){

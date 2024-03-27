@@ -44,7 +44,7 @@ public class UserServiceIMPL implements UserService{
 				.userId(user.getUserId())
 				.username(user.getUsername())
 				.email(user.getEmail())
-				//.deleted(user.isDeleted())
+				.deleted(user.isDeleted())
 				.createdAt(user.getCreatedAt())
 				.lastModifiedAt(user.getLastModifiedAt())
 				.build();
@@ -52,23 +52,23 @@ public class UserServiceIMPL implements UserService{
 	private User mapToUser(UserRequestDTO userRequest, User user) {
 		user.setUsername(userRequest.getUsername());
 		user.setEmail(userRequest.getEmail());
-		//user.setDeleted(false);
+		user.setDeleted(false);
 		user.setCreatedAt(LocalDateTime.now());
 		user.setLastModifiedAt(LocalDateTime.now());
 		user.setPassword(password.encode(userRequest.getPassword()));
 		return user;
 	}
 	
-//	@Override
-//	public ResponseEntity<ResponseStructure<UserResponse>> deleteUser(int userId) {
-//		 return repository.findById(userId).map(user -> {
-//			 user.setDeleted(true);
-//			 user = repository.save(user);
-//			 return ResponseEntity.ok(structure.setStatusCode(HttpStatus.OK.value())
-//					 .setMessage("Deleted successfully")
-//					 .setData(mapToUserResponse(user)));
-//		 }).orElseThrow(()->new UserNotFoundException ("User is not found"));
-//	}
+	@Override
+	public ResponseEntity<ResponseStructure<UserResponse>> deleteUser(int userId) {
+		 return repository.findById(userId).map(user -> {
+			 user.setDeleted(true);
+			 user = repository.save(user);
+			 return ResponseEntity.ok(structure.setStatusCode(HttpStatus.OK.value())
+					 .setMessage("Deleted successfully")
+					 .setData(mapToUserResponse(user)));
+		 }).orElseThrow(()->new UserNotFoundException ("User is not found"));
+	}
 //	
 //	@Override
 //	public ResponseEntity<ResponseStructure<UserResponse>> findUniqueUser(int userId) {
